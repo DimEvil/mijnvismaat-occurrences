@@ -1,11 +1,11 @@
-# muskrat-uvw-occurrences
- rato data publication muskrat
+# MijnVisMaat-occurrences
+ data publication Vismaat
 
-# Mica - Muskrat Occurrences collected by UVW in The Netherlands
+# Mijn Vismaat Occurrences collected in Belgium
 
 ## Rationale
 
-This repository contains the functionality to standardize the data of _Mica - Muskrat Occurrences collected by UVW in The Netherlands to a [Darwin Core Occurrence](https://www.gbif.org/dataset-classes) that can be harvested by [GBIF](http://www.gbif.org).
+This repository contains the functionality to standardize the data of _Mijn vismaat occurrences in Belgium to a [Darwin Core Occurrence](https://www.gbif.org/dataset-classes) that can be harvested by [GBIF](http://www.gbif.org).
 
 ## Workflow
 
