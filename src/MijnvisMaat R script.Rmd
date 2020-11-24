@@ -329,7 +329,7 @@ occurrence %<>% mutate(individualCount = '1')
 ## samplingProtocol
 
 ```{r}
-# occurrence %<>% rename(samplingProtocol = 'materials_en') %>%
+occurrence %<>% mutate(samplingProtocol = 'opportinistic fishing') 
  
 
  # extract follow ups to new column
@@ -511,18 +511,29 @@ occurrence %<>% mutate(scientificName = acceptedName)
 occurrence %<>% mutate(kingdom = "Animalia")
 ```
 
+Use the [GBIF nameparser](https://www.gbif.org/tools/name-parser) to retrieve nomenclatural information for the scientific names in the dataset:
 
-### scientificNameAuthorship
 ```{r}
-#occurrence %<>% mutate(scientificNameAuthorship = recode(CatchTypeName,
-#"Muskusrat" = "Linnaeus, 1766",
-#                   "Beverrat"  = "Molina, 1782",
-#                   "Muskusrat ram oud (>1jr)" = "Linnaeus, 1766",
-#                   "Muskusrat ram jong (<1jr)" = "Linnaeus, 1766",
-#                   "Muskusrat moer oud (>1jr)" = "Linnaeus, 1766",
-#                   "Muskusrat moer jong (<1jr)" = "Linnaeus, 1766",
-#                                       ))
+parsed_names <- occurrence %>%
+  distinct(scientificName) %>%
+  pull() %>% # Create vector from dataframe
+  parsenames() # An rgbif function
 ```
+
+Preview data:
+
+```{r}
+parsed_names %>% head(n = 62)
+```
+
+Show scientific names with nomenclatural issues, i.e. not of `type = SCIENTIFIC` or that could not be fully parsed. Note: these are not necessarily incorrect.
+
+```{r}
+parsed_names %>%
+  select(scientificname, type, parsed, parsedpartially, rankmarker) %>%
+  filter(!(type == "SCIENTIFIC" & parsed == "TRUE" & parsedpartially == "FALSE"))
+```
+
 #verbatimScientificName
 
 
@@ -570,14 +581,14 @@ define the order of the output columns
 ```{r}
 col_order <- c( "ID","type","language","license","rightsHolder","accessRights","datasetID"
                ,"institutionCode","datasetName","basisOfRecord","occurrenceID","recordedBy"
-               ,"individualCount","occurrenceStatus","eventDate","continent","countryCode"
+               ,"individualCount","occurrenceStatus","samplingProtocol","eventDate","continent","countryCode"
                ,"decimalLatitude","decimalLongitude","geodeticDatum","coordinateUncertaintyInMeters"
-               ,"identifiedBy","scientificName","kingdom","scientificNameAuthorship","taxonRank","nomenclaturalCode"
+               ,"identifiedBy","scientificName","kingdom","taxonRank","nomenclaturalCode"
                ) 
                # still needed for this dataset ,"occurrenceID"
-               # removed for this dataset,"occurrenceRemarks","municipality","samplingProtocol","samplingEffort"
+               # removed for this dataset,"occurrenceRemarks","municipality","samplingEffort"
                # removed for this dataset, "verbatimLatitude","verbatimLongitude","verbatimCoordinates"
-               # ,"verbatimCoordinateSystem","verbatimSRS"
+               # ,"verbatimCoordinateSystem","verbatimSRS" ,"scientificNameAuthorship"
 occurrence <- occurrence[, col_order]
 ```
 
