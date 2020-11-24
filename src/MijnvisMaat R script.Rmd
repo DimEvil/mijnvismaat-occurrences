@@ -56,8 +56,8 @@ File exported to csv
 
 ```{r}
 
-##input_data <- read_delim(file = here::here("data", "raw", "RATO_gegevens_backoffice2020.txt"), ";" , escape_double = FALSE , trim_ws = TRUE, guess_max = 5000  )
-input_interim <- read_csv2(file = here::here("data", "RAW", "MVM_hengelvangsten_Vlaanderen.csv"))                        
+input_interim <- read_delim(file = here::here("data", "raw", "MVM_hengelvangsten_Vlaanderen.csv"), ";" , escape_double = FALSE , trim_ws = TRUE, guess_max = 5000  )
+##input_interim <- read_csv2(file = here::here("data", "RAW", "MVM_hengelvangsten_Vlaanderen.csv"))                        
 
 ```
 
@@ -245,13 +245,13 @@ occurrence %<>% mutate(datasetID = "insert doi")
 ### institutionCode
 
 ```{r}
-occurrence %<>% mutate(institutionCode = "Unie Van Waterschappen") # e.g. "INBO"
+occurrence %<>% mutate(institutionCode = "Sportvisserij Nederland") # e.g. "INBO"
 ```
 
 ### datasetName
 
 ```{r}
-occurrence %<>% mutate(datasetName = "Mica - Muskrat Occurrences collected by UVW in The Netherlands") # e.g. "Checklist of non-native freshwater fishes in Flanders, Belgium"
+occurrence %<>% mutate(datasetName = "MijnVISmaat application occurrences in Belgium") # e.g. "Checklist of non-native freshwater fishes in Flanders, Belgium"
 ```
 
 The following terms contain information about the taxon:
@@ -270,7 +270,7 @@ occurrence %<>% mutate(basisOfRecord = "HumanObservation")
 **This need to be fixed**
 
 ```{r}
-occurrence %<>% mutate(occurrenceID = 'ID') 
+occurrence %<>% mutate(occurrenceID = ID) 
 #                mutate(occurrenceID = str_c("UVW:", occurrenceID))
   
 ```
@@ -329,7 +329,7 @@ occurrence %<>% mutate(individualCount = '1')
 ## samplingProtocol
 
 ```{r}
-occurrence %<>% mutate(samplingProtocol = 'opportinistic fishing') 
+occurrence %<>% mutate(samplingProtocol = 'catch') 
  
 
  # extract follow ups to new column
@@ -542,7 +542,14 @@ occurrence %<>% mutate(vernacularName = Vissoort)
 ```
 #taxonRank
 ```{r}
-occurrence %<>% mutate(taxonRank = "species")
+occurrence %<>% mutate(taxonRank = case_when(scientificName == "Cyprinus carpio x Carassius auratus" ~ "hybrid",
+                                             TRUE ~ "species"))
+
+
+#taxon %<>% mutate(nomenclaturalCode =case_when(kingdom == "Animalia" ~ "ICZN",kingdom == "Plantae" ~ "ICBN"  )) 
+
+
+
 ```
 
 
