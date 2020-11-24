@@ -270,7 +270,7 @@ occurrence %<>% mutate(basisOfRecord = "HumanObservation")
 **This need to be fixed**
 
 ```{r}
-occurrence %<>% rename(occurrenceID = 'ID') 
+occurrence %<>% mutate(occurrenceID = 'ID') 
 #                mutate(occurrenceID = str_c("UVW:", occurrenceID))
   
 ```
@@ -279,7 +279,7 @@ occurrence %<>% rename(occurrenceID = 'ID')
 ### recordedBy
 
 ```{r}
-#occurrence %<>% mutate(recordedBy = WaterAuthorityName)
+occurrence %<>% mutate(recordedBy = 'MijnVismaat')
 ```
 
 
@@ -485,7 +485,7 @@ occurrence %<>% mutate(verbatimSRS = "EPSG:4326")
 
 ###identifiedBy
 ```{r}
-#occurrence %<>% mutate(identifiedBy = 'MijnVISmaat, Sportvisserij Nederland')
+occurrence %<>% mutate(identifiedBy = 'MijnVISmaat, Sportvisserij Nederland')
 ```
 
 ### scientificName 
@@ -568,15 +568,16 @@ occurrence %<>% select(-c(year, month, day, Foto,`Datum (dd-mm-jjjj)`, `Tijdconv
 define the order of the output columns
 
 ```{r}
-col_order <- c( "occurrenceID","type","language","license","rightsHolder","accessRights","datasetID"
-               ,"institutionCode","datasetName","basisOfRecord","recordedBy"
+col_order <- c( "ID","type","language","license","rightsHolder","accessRights","datasetID"
+               ,"institutionCode","datasetName","basisOfRecord","occurrenceID","recordedBy"
                ,"individualCount","occurrenceStatus","eventDate","continent","countryCode"
-               ,"verbatimLatitude","verbatimLongitude","verbatimCoordinates","verbatimCoordinateSystem","verbatimSRS"
                ,"decimalLatitude","decimalLongitude","geodeticDatum","coordinateUncertaintyInMeters"
                ,"identifiedBy","scientificName","kingdom","scientificNameAuthorship","taxonRank","nomenclaturalCode"
                ) 
                # still needed for this dataset ,"occurrenceID"
                # removed for this dataset,"occurrenceRemarks","municipality","samplingProtocol","samplingEffort"
+               # removed for this dataset, "verbatimLatitude","verbatimLongitude","verbatimCoordinates"
+               # ,"verbatimCoordinateSystem","verbatimSRS"
 occurrence <- occurrence[, col_order]
 ```
 
