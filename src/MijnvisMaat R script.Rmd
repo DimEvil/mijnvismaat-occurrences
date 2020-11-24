@@ -560,7 +560,7 @@ occurrence %<>%
 
 ```{r}
 colnames(occurrence) <- str_remove(colnames(occurrence), "dwc_")
-occurrence %<>% select(-c(year, month, day, Foto,`Datum (dd-mm-jjjj)` ))  #remove collection columns
+occurrence %<>% select(-c(year, month, day, Foto,`Datum (dd-mm-jjjj)`, `Tijdconversie (uu:mm)`,Visstek, Vissoort, `Lat (EPSG: 4326)`, `Lon (EPSG: 4326)`, acceptedName, Bron ))  #remove collection columns
           ##  rename(scientificName = verbatimScientificName) 
 ```
 
@@ -568,7 +568,7 @@ occurrence %<>% select(-c(year, month, day, Foto,`Datum (dd-mm-jjjj)` ))  #remov
 define the order of the output columns
 
 ```{r}
-col_order <- c( "type","language","license","rightsHolder","accessRights","datasetID"
+col_order <- c( "occurrenceID","type","language","license","rightsHolder","accessRights","datasetID"
                ,"institutionCode","datasetName","basisOfRecord","recordedBy"
                ,"individualCount","occurrenceStatus","eventDate","continent","countryCode"
                ,"verbatimLatitude","verbatimLongitude","verbatimCoordinates","verbatimCoordinateSystem","verbatimSRS"
