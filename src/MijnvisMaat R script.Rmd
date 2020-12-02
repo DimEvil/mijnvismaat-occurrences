@@ -619,3 +619,18 @@ write.csv(occurrence, "../data/processed/occurrence.csv", append = FALSE, na = "
 #write_csv(occurrence, here("data", "processed", "occurrence.csv"), append = FALSE, na = "")
 
 ```
+
+
+# data quality tests
+
+```{r}
+
+parsed_names <- input_interim %>%
+  distinct(acceptedName) # %>%
+  #pull() %>% # Create vector from dataframe
+  #parsenames() # An rgbif function
+
+head(parsed_names, n = 30)
+
+```
+
