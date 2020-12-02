@@ -572,6 +572,24 @@ occurrence %<>%
 
 ```
 
+## remove rows with non invasive fish
+
+```{r}
+
+occurrence %<>%
+        filter(scientificName != 'Leuciscus idus (Linnaeus, 1758)') %<>%
+        filter(scientificName != 'Silurus glanis Linnaeus, 1758')
+
+        
+  
+  
+  
+ 
+
+
+```
+
+
 
 ## Post-processing
 
@@ -588,7 +606,7 @@ define the order of the output columns
 ```{r}
 col_order <- c( "ID","type","language","license","rightsHolder","accessRights","datasetID"
                ,"institutionCode","datasetName","basisOfRecord","occurrenceID","recordedBy"
-               ,"individualCount","occurrenceStatus","samplingProtocol","eventDate","continent","countryCode"
+               ,"individualCount","occurrenceStatus","samplingProtocol","eventDate","continent","countryCode","locality"
                ,"decimalLatitude","decimalLongitude","geodeticDatum","coordinateUncertaintyInMeters"
                ,"identifiedBy","scientificName","kingdom","taxonRank","nomenclaturalCode"
                ) 
@@ -626,9 +644,9 @@ write.csv(occurrence, "../data/processed/occurrence.csv", append = FALSE, na = "
 ```{r}
 
 parsed_names <- input_interim %>%
-  distinct(acceptedName) # %>%
-  #pull() %>% # Create vector from dataframe
-  #parsenames() # An rgbif function
+  distinct(acceptedName)  %>%
+  pull() %>% # Create vector from dataframe
+  parsenames() # An rgbif function
 
 head(parsed_names, n = 30)
 
