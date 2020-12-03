@@ -443,7 +443,7 @@ municipality already in source file
 ### locality
 
 ```{r}
-occurrence %<>% mutate(locality = Visstek)
+occurrence %<>% mutate(verbatimLocality = Visstek)
 ```
 
 
@@ -606,7 +606,7 @@ define the order of the output columns
 ```{r}
 col_order <- c( "ID","type","language","license","rightsHolder","accessRights","datasetID"
                ,"institutionCode","datasetName","basisOfRecord","occurrenceID","recordedBy"
-               ,"individualCount","occurrenceStatus","samplingProtocol","eventDate","continent","countryCode","locality"
+               ,"individualCount","occurrenceStatus","samplingProtocol","eventDate","continent","countryCode","verbatimLocality"
                ,"decimalLatitude","decimalLongitude","geodeticDatum","coordinateUncertaintyInMeters"
                ,"identifiedBy","scientificName","kingdom","taxonRank","nomenclaturalCode"
                ) 
@@ -649,6 +649,8 @@ parsed_names <- input_interim %>%
   parsenames() # An rgbif function
 
 head(parsed_names, n = 30)
+
+write.csv(parsed_names, "../data/processed/speciesList.csv", append = FALSE, na = "",  row.names = FALSE, fileEncoding = "UTF-8")
 
 ```
 
