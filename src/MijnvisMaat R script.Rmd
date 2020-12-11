@@ -329,7 +329,7 @@ occurrence %<>% mutate(individualCount = '1')
 ## samplingProtocol
 
 ```{r}
-occurrence %<>% mutate(samplingProtocol = 'catch') 
+occurrence %<>% mutate(samplingProtocol = 'fishing rod catch') 
  
 
  # extract follow ups to new column
