@@ -6,7 +6,7 @@
 # Syntax version: 0.1
 
 id:
-  regex: 'MICA:RATO:[A-Z0-9]+'
+  empty: false
   # Has to be unique as well
 
 type:
@@ -19,7 +19,7 @@ license:
   allowed: http://creativecommons.org/publicdomain/zero/1.0/
 
 rightsHolder:
-  allowed: RATO
+  allowed: Sportvisserij Nederland
 
 accessRights:
   allowed: http://www.inbo.be/en/norms-for-data-use
@@ -31,7 +31,7 @@ institutionCode:
   allowed: INBO
 
 datasetName:
-  allowed: RATO - Muskrat occurrences in East Flanders, Belgium
+  allowed: MijnVISmaat app, alien fish occurrences in Belgium
 
 basisOfRecord:
   allowed: HumanObservation
@@ -41,16 +41,16 @@ basisOfRecord:
 # dataGeneralizations: Not in this dataset
 
 occurrenceID:
-  regex: 'MICA:RATO:[A-Z0-9]+'
+  empty: false
 
 recordedBy:
-  allowed: RATO
+  allowed: 
 
 individualCount:
   empty: true
   numberformat: x
   min: 0
-  max: 64
+  max: 1
 
 occurrenceStatus:
   empty: true
@@ -62,15 +62,8 @@ occurrenceStatus:
         allowed: 0
       allowed: absent
 
-occurrenceRemarks:
-  empty: true
-  allowed:
-    - Catch
-    - Identified
-    - No catch
-    - Traces
-
 samplingProtocol:
+  allowed: fishing rod catch
   empty: true
 
 samplingEffort:
@@ -81,8 +74,8 @@ eventDate:
     - '%Y-%m-%d'
     - '%Y-%m'
     - '%Y'    
-  mindate: 2018-01-12
-  maxdate: 2020-08-26
+  mindate: 2011-01-01
+  maxdate: 2020-07-17
 
 continent:
   allowed: Europe
@@ -111,13 +104,13 @@ verbatimSRS:
 
 decimalLatitude:
   numberformat: '.5'
-  min: 50.61 # SE Belgium
-  max: 51.38 # NW Belgium
+  min: 49.48 # SE Belgium
+  max: 51.51 # NW Belgium
 
 decimalLongitude:
   numberformat: '.5'
-  min: 3.30 # NW Belgium
-  max: 4.33 # SE Belgium
+  min: 2.39 # NW Belgium
+  max: 6.41 # SE Belgium
 
 geodeticDatum:
   allowed: WGS84
@@ -126,16 +119,14 @@ coordinateUncertaintyInMeters:
   allowed: '30'
   
 identifiedBy:
-  allowed: RATO
+  allowed: MijnVISmaat, Sportvisserij Nederland
 
 scientificName:
-  allowed: Ondatra zibethicus
+  empty: false
 
 kingdom:
   allowed: Animalia
 
-scientificNameAuthorship:
-  allowed: Linnaeus, 1766
 
 taxonRank:
   allowed: species
