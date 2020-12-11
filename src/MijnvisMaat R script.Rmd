@@ -228,7 +228,7 @@ occurrence %<>% mutate(license = "http://creativecommons.org/publicdomain/zero/1
 ### rightsHolder
 
 ```{r}
-occurrence %<>% mutate(rightsHolder = "MijnVISmaat, Sportvisserij Nederland") # e.g. "INBO"
+occurrence %<>% mutate(rightsHolder = "Sportvisserij Nederland") # e.g. "INBO"
 ```
 ### accessRights
 
