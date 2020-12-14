@@ -251,7 +251,7 @@ occurrence %<>% mutate(institutionCode = "Sportvisserij Nederland") # e.g. "INBO
 ### datasetName
 
 ```{r}
-occurrence %<>% mutate(datasetName = "MijnVISmaat application occurrences in Belgium") # e.g. "Checklist of non-native freshwater fishes in Flanders, Belgium"
+occurrence %<>% mutate(datasetName = "MijnVISmaat app, alien fish occurrences in Belgium") # e.g. "Checklist of non-native freshwater fishes in Flanders, Belgium"
 ```
 
 The following terms contain information about the taxon:
@@ -387,7 +387,7 @@ occurrence %<>% mutate(year = year(eventDate)) %<>%
 occurrence %<>% mutate(geodeticDatum = "WGS84") %>%
                 mutate(coordinateUncertaintyInMeters = "30") %>%
                 # mutate(verbatimCoordinateSystem = "Rijksdriehoekscoördinaten") %>%
-                mutate(countryCode = "NL")  %>%            
+                mutate(countryCode = "BE")  %>%            
                 mutate(continent = "Europe")
 
 
