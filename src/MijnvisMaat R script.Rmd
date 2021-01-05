@@ -228,7 +228,7 @@ occurrence %<>% mutate(license = "http://creativecommons.org/publicdomain/zero/1
 ### rightsHolder
 
 ```{r}
-occurrence %<>% mutate(rightsHolder = "Sportvisserij Nederland") # e.g. "INBO"
+occurrence %<>% mutate(rightsHolder = "Royal Dutch Angling Association") # e.g. "INBO"
 ```
 ### accessRights
 
@@ -245,7 +245,7 @@ occurrence %<>% mutate(datasetID = "insert doi")
 ### institutionCode
 
 ```{r}
-occurrence %<>% mutate(institutionCode = "Sportvisserij Nederland") # e.g. "INBO"
+occurrence %<>% mutate(institutionCode = "Royal Dutch Angling Association") # e.g. "INBO"
 ```
 
 ### datasetName
@@ -485,7 +485,7 @@ occurrence %<>% mutate(verbatimSRS = "EPSG:4326")
 
 ###identifiedBy
 ```{r}
-occurrence %<>% mutate(identifiedBy = 'MijnVISmaat, Sportvisserij Nederland')
+occurrence %<>% mutate(identifiedBy = 'MijnVISmaat, Royal Dutch Angling Association')
 ```
 
 ### scientificName 
