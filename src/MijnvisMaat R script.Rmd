@@ -92,8 +92,8 @@ We want to keep the original verbatim Coordinates
 The original X,Y will be used for creating decimalLatitude and decimalLongitude
 
 ```{r}
-input_interim %<>% mutate(decimalLongitude = `Lat (EPSG: 4326)`) %>%
-                   mutate(decimalLatitude = `Lon (EPSG: 4326)`)
+input_interim %<>% mutate(decimalLongitude = `Lon (EPSG: 4326)`) %>%
+                   mutate(decimalLatitude = `Lat (EPSG: 4326)`)
 ```
 ### Create a spacial dataframe
 
