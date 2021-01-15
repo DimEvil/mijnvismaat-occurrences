@@ -1,8 +1,7 @@
 ---
 title: "Darwin Core Mapping"
-subtitle: "For: Muskrat occurrences from Rato, East Flanders"
+subtitle: "For: MijnVISmaat - Exotic fish occurrences in Belgium"
 author: "Dimitri Brosens"
-date: "9-9-2020"
 date: "`r Sys.Date()`"
 output:
   html_document:
@@ -17,7 +16,6 @@ output:
 #    toc: yes
 #    toc_depth: 3
 ---
-
 
 # Setup 
 
@@ -650,7 +648,7 @@ parsed_names <- input_interim %>%
 
 head(parsed_names, n = 30)
 
-write.csv(parsed_names, "../data/processed/speciesList.csv", append = FALSE, na = "",  row.names = FALSE, fileEncoding = "UTF-8")
+write.csv(parsed_names, "../data/interim/species.csv", append = FALSE, na = "",  row.names = FALSE, fileEncoding = "UTF-8")
 
 ```
 
