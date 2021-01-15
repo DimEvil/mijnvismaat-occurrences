@@ -130,7 +130,7 @@ occurrence %<>% mutate(dwc_basisOfRecord = "HumanObservation")
 ### occurrenceID
 
 ```{r}
-occurrence %<>% mutate(dwc_occurrenceID = ID) 
+occurrence %<>% mutate(dwc_occurrenceID = id) 
 ```
 
 ### recordedBy
@@ -148,7 +148,7 @@ occurrence %<>% mutate(dwc_individualCount = "1")
 ### occurrenceStatus
 
 ```{r}
-occurrence %<>% mutate(dwc_individualCount = "present")
+occurrence %<>% mutate(dwc_occurrenceStatus = "present")
 ```
 
 ## samplingProtocol
@@ -183,7 +183,7 @@ occurrence %<>% mutate(dwc_countryCode = "BE")
 ### verbatimLocality
 
 ```{r}
-occurrence %<>% mutate(dwc_verbatimLocality = Visstek)
+occurrence %<>% mutate(dwc_verbatimLocality = visstek)
 ```
 
 ### decimalLatitude
@@ -219,7 +219,7 @@ occurrence %<>% mutate(dwc_coordinateUncertaintyInMeters = "30")
 ### scientificName 
 
 ```{r}
-occurrence %<>% mutate(dwc_scientificName = acceptedName)
+occurrence %<>% mutate(dwc_scientificName = accepted_name)
 ```
 
 ### kingdom
@@ -232,7 +232,7 @@ occurrence %<>% mutate(dwc_kingdom = "Animalia")
 
 ```{r}
 occurrence %<>% mutate(dwc_taxonRank = case_when(
-  scientificName == "Cyprinus carpio x Carassius auratus" ~ "hybrid",
+  accepted_name == "Cyprinus carpio x Carassius auratus" ~ "hybrid",
   TRUE ~ "species"
 ))
 ```
@@ -240,7 +240,7 @@ occurrence %<>% mutate(dwc_taxonRank = case_when(
 ### vernacularName
 
 ```{r}
-occurrence %<>% mutate(dwc_vernacularName = Vissoort)
+occurrence %<>% mutate(dwc_vernacularName = vissoort)
 ```
 
 # nomenclaturalCode
@@ -253,8 +253,8 @@ occurrence %<>% mutate(dwc_nomenclaturalCode = "ICZN")
 
 ```{r}
 occurrence %<>%
-  filter(scientificName != 'Leuciscus idus (Linnaeus, 1758)') %<>%
-  filter(scientificName != 'Silurus glanis Linnaeus, 1758')
+  filter(accepted_name != 'Leuciscus idus (Linnaeus, 1758)') %<>%
+  filter(accepted_name != 'Silurus glanis Linnaeus, 1758')
 ```
 
 ## Post-processing
