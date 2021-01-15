@@ -269,9 +269,10 @@ occurrence %>% head()
 Save to CSV:
 
 ```{r}
-write.csv(occurrence, "../data/processed/occurrence.csv", append = FALSE, na = "",  row.names = FALSE, fileEncoding = "UTF-8")
+write_csv(occurrence, here::here("data", "processed", "occurrence.csv"), na = "")
 ```
 
+# Data quality tests
 
 ```{r}
 parsed_names <- input_interim %>%
@@ -279,5 +280,5 @@ parsed_names <- input_interim %>%
   pull() %>% # Create vector from dataframe
   parsenames() # An rgbif function
 
-write.csv(parsed_names, "../data/interim/species.csv", append = FALSE, na = "",  row.names = FALSE, fileEncoding = "UTF-8")
+write_csv(parsed_names, here::here("data", "interim", "species.csv"))
 ```
