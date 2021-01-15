@@ -1,13 +1,9 @@
-# Dataset: https://ipt.inbo.be/resource?r=mica-rato-occurrences
-# DOI: 
+# Dataset: http://ipt.nlbif.nl/resource?r=mijnvismaat-occurrences
+# DOI: https://doi.org/10.15468/6va6gm
 # 
 # Scope: dwc-occurrence
 # Author: Dimitri Brosens
 # Syntax version: 0.1
-
-id:
-  empty: false
-  # Has to be unique as well
 
 type:
   allowed: Event
@@ -19,19 +15,19 @@ license:
   allowed: http://creativecommons.org/publicdomain/zero/1.0/
 
 rightsHolder:
-  allowed: Sportvisserij Nederland
+  allowed: Royal Dutch Angling Association
 
 accessRights:
   allowed: http://www.inbo.be/en/norms-for-data-use
 
 datasetID:
-  allowed: ''
+  allowed: 'https://doi.org/10.15468/6va6gm'
 
 institutionCode:
-  allowed: INBO
+  allowed: Royal Dutch Angling Association
 
 datasetName:
-  allowed: MijnVISmaat app, alien fish occurrences in Belgium
+  allowed: MijnVISmaat - Exotic fish occurrences in Belgium
 
 basisOfRecord:
   allowed: HumanObservation
@@ -44,38 +40,26 @@ occurrenceID:
   empty: false
 
 recordedBy:
-  allowed: 
+  allowed: MijnVISmaat
 
 individualCount:
-  empty: true
   numberformat: x
-  min: 0
+  min: 1
   max: 1
 
 occurrenceStatus:
-  empty: true
-  allowed:
-    absent
-    present
-  if:
-    - individualCount:
-        allowed: 0
-      allowed: absent
+  allowed: present
 
 samplingProtocol:
   allowed: fishing rod catch
   empty: true
 
-samplingEffort:
-   empty: true
+# samplingEffort: Not in this dataset
 
 eventDate:
-  dateformat:
-    - '%Y-%m-%d'
-    - '%Y-%m'
-    - '%Y'    
+  dateformat: '%Y-%m-%dT%H:%M'
   mindate: 2011-01-01
-  maxdate: 2020-07-17
+  maxdate: 2020-07-18 # If we take into account added hours for 2020-07-17
 
 continent:
   allowed: Europe
@@ -83,24 +67,18 @@ continent:
 countryCode:
   allowed: BE
 
-municipality:
-  empty: true
+verbatimLocality:
+  empty: false
 
-verbatimLatitude:
-  numberformat: x
-  min: 21829 # SE Belgium
-  max: 246072 # NW Belgium
+# municipality: Not in this dataset
 
-verbatimLongitude:
-  numberformat: x
-  min: 22344 # NW Belgium
-  max: 297889 # SE Belgium
+# verbatimLatitude: Not in this dataset
 
-verbatimCoordinateSystem:
-  allowed: Lambert coordinates
+# verbatimLongitude: Not in this dataset
 
-verbatimSRS:
-  allowed: Belgian Datum 1972
+# verbatimCoordinateSystem: Not in this dataset
+
+# verbatimSRS: Not in this dataset
 
 decimalLatitude:
   numberformat: '.5'
@@ -117,9 +95,6 @@ geodeticDatum:
 
 coordinateUncertaintyInMeters:
   allowed: '30'
-  
-identifiedBy:
-  allowed: MijnVISmaat, Sportvisserij Nederland
 
 scientificName:
   empty: false
@@ -127,9 +102,11 @@ scientificName:
 kingdom:
   allowed: Animalia
 
-
 taxonRank:
-  allowed: species
+  allowed: [species, hybrid]
+
+vernacularName:
+  empty: true
 
 nomenclaturalCode:
   allowed: ICZN
