@@ -1,11 +1,8 @@
-# MijnVisMaat-occurrences
- data publication Mijn Vismaat
-
-# Mijn Vismaat Occurrences collected in Belgium
+# MijnVISmaat - Exotic fish occurrences in Belgium
 
 ## Rationale
 
-This repository contains the functionality to standardize the data of _Mijn vismaat occurrences in Belgium to a [Darwin Core Occurrence](https://www.gbif.org/dataset-classes) that can be harvested by [GBIF](http://www.gbif.org).
+This repository contains the functionality to standardize the data of _MijnVISmaat - Exotic fish occurrences in Belgium_ to a [Darwin Core Occurrence](https://www.gbif.org/dataset-classes) that can be harvested by [GBIF](http://www.gbif.org).
 
 ## Workflow
 
