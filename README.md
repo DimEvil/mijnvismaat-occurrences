@@ -13,8 +13,8 @@ This repository contains the functionality to standardize the data of _Mijn vism
 
 ## Published dataset
 
-* [Dataset on the IPT](http://NLBIFIPT/resource?r=mica-rato-occurrences)
-* [Dataset on GBIF](<!-- Add the DOI of the dataset on GBIF here -->)
+* [Dataset on the IPT](http://ipt.nlbif.nl/resource?r=mijnvismaat-occurrences)
+* [Dataset on GBIF](https://doi.org/10.15468/6va6gm)
 
 ## Repo structure
 
@@ -44,7 +44,7 @@ The repository structure is based on [Cookiecutter Data Science](http://drivenda
 
 ## Contributors
 
-[List of contributors](https://github.com/inbo/muskrat-occurrences/graphs/contributors)
+[List of contributors](https://github.com/inbo/mijnvismaat-occurrences/graphs/contributors)
 
 ## License
 
