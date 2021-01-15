@@ -1,20 +1,20 @@
-"scientificname","type","genusorabove","specificepithet","authorship","year","parsed","parsedpartially","canonicalname","canonicalnamewithmarker","canonicalnamecomplete","rankmarker","bracketauthorship","bracketyear"
-"Cyprinus carpio Linnaeus, 1758","SCIENTIFIC","Cyprinus","carpio","Linnaeus","1758",TRUE,FALSE,"Cyprinus carpio","Cyprinus carpio","Cyprinus carpio Linnaeus, 1758","sp.",,
-"Neogobius melanostomus (Pallas, 1814)","SCIENTIFIC","Neogobius","melanostomus",,,TRUE,FALSE,"Neogobius melanostomus","Neogobius melanostomus","Neogobius melanostomus (Pallas, 1814)","sp.","Pallas","1814"
-"Leuciscus idus (Linnaeus, 1758)","SCIENTIFIC","Leuciscus","idus",,,TRUE,FALSE,"Leuciscus idus","Leuciscus idus","Leuciscus idus (Linnaeus, 1758)","sp.","Linnaeus","1758"
-"Sander lucioperca (Linnaeus, 1758)","SCIENTIFIC","Sander","lucioperca",,,TRUE,FALSE,"Sander lucioperca","Sander lucioperca","Sander lucioperca (Linnaeus, 1758)","sp.","Linnaeus","1758"
-"Oncorhynchus mykiss (Walbaum, 1792)","SCIENTIFIC","Oncorhynchus","mykiss",,,TRUE,FALSE,"Oncorhynchus mykiss","Oncorhynchus mykiss","Oncorhynchus mykiss (Walbaum, 1792)","sp.","Walbaum","1792"
-"Leuciscus aspius (Linnaeus, 1758)","SCIENTIFIC","Leuciscus","aspius",,,TRUE,FALSE,"Leuciscus aspius","Leuciscus aspius","Leuciscus aspius (Linnaeus, 1758)","sp.","Linnaeus","1758"
-"Acipenser gueldenstaedtii Brandt & Ratzeburg, 1831","SCIENTIFIC","Acipenser","gueldenstaedtii","Brandt & Ratzeburg","1831",TRUE,FALSE,"Acipenser gueldenstaedtii","Acipenser gueldenstaedtii","Acipenser gueldenstaedtii Brandt & Ratzeburg, 1831","sp.",,
-"Huso huso","SCIENTIFIC","Huso","huso",,,TRUE,FALSE,"Huso huso","Huso huso","Huso huso","sp.",,
-"Carassius gibelio (Bloch, 1782)","SCIENTIFIC","Carassius","gibelio",,,TRUE,FALSE,"Carassius gibelio","Carassius gibelio","Carassius gibelio (Bloch, 1782)","sp.","Bloch","1782"
-"Ameiurus nebulosus (Lesueur, 1819)","SCIENTIFIC","Ameiurus","nebulosus",,,TRUE,FALSE,"Ameiurus nebulosus","Ameiurus nebulosus","Ameiurus nebulosus (Lesueur, 1819)","sp.","Lesueur","1819"
-"Lepomis gibbosus (Linnaeus, 1758)","SCIENTIFIC","Lepomis","gibbosus",,,TRUE,FALSE,"Lepomis gibbosus","Lepomis gibbosus","Lepomis gibbosus (Linnaeus, 1758)","sp.","Linnaeus","1758"
-"Ctenopharyngodon idella (Valenciennes, 1844)","SCIENTIFIC","Ctenopharyngodon","idella",,,TRUE,FALSE,"Ctenopharyngodon idella","Ctenopharyngodon idella","Ctenopharyngodon idella (Valenciennes, 1844)","sp.","Valenciennes","1844"
-"Silurus glanis Linnaeus, 1758","SCIENTIFIC","Silurus","glanis","Linnaeus","1758",TRUE,FALSE,"Silurus glanis","Silurus glanis","Silurus glanis Linnaeus, 1758","sp.",,
-"Acipenser baerii Brandt, 1869","SCIENTIFIC","Acipenser","baerii","Brandt","1869",TRUE,FALSE,"Acipenser baerii","Acipenser baerii","Acipenser baerii Brandt, 1869","sp.",,
-"Cyprinus carpio x Carassius auratus","HYBRID",,,,,FALSE,FALSE,,,,,,
-"Carassius auratus (Linnaeus, 1758)","SCIENTIFIC","Carassius","auratus",,,TRUE,FALSE,"Carassius auratus","Carassius auratus","Carassius auratus (Linnaeus, 1758)","sp.","Linnaeus","1758"
-"Acipenser ruthenus Linnaeus, 1758","SCIENTIFIC","Acipenser","ruthenus","Linnaeus","1758",TRUE,FALSE,"Acipenser ruthenus","Acipenser ruthenus","Acipenser ruthenus Linnaeus, 1758","sp.",,
-"Salvelinus fontinalis (Mitchill, 1814)","SCIENTIFIC","Salvelinus","fontinalis",,,TRUE,FALSE,"Salvelinus fontinalis","Salvelinus fontinalis","Salvelinus fontinalis (Mitchill, 1814)","sp.","Mitchill","1814"
-"Neogobius fluviatilis (Pallas, 1814)","SCIENTIFIC","Neogobius","fluviatilis",,,TRUE,FALSE,"Neogobius fluviatilis","Neogobius fluviatilis","Neogobius fluviatilis (Pallas, 1814)","sp.","Pallas","1814"
+scientificname,type,genusorabove,specificepithet,authorship,year,parsed,parsedpartially,canonicalname,canonicalnamewithmarker,canonicalnamecomplete,rankmarker,bracketauthorship,bracketyear
+"Cyprinus carpio Linnaeus, 1758",SCIENTIFIC,Cyprinus,carpio,Linnaeus,1758,TRUE,FALSE,Cyprinus carpio,Cyprinus carpio,"Cyprinus carpio Linnaeus, 1758",sp.,NA,NA
+"Neogobius melanostomus (Pallas, 1814)",SCIENTIFIC,Neogobius,melanostomus,NA,NA,TRUE,FALSE,Neogobius melanostomus,Neogobius melanostomus,"Neogobius melanostomus (Pallas, 1814)",sp.,Pallas,1814
+"Leuciscus idus (Linnaeus, 1758)",SCIENTIFIC,Leuciscus,idus,NA,NA,TRUE,FALSE,Leuciscus idus,Leuciscus idus,"Leuciscus idus (Linnaeus, 1758)",sp.,Linnaeus,1758
+"Sander lucioperca (Linnaeus, 1758)",SCIENTIFIC,Sander,lucioperca,NA,NA,TRUE,FALSE,Sander lucioperca,Sander lucioperca,"Sander lucioperca (Linnaeus, 1758)",sp.,Linnaeus,1758
+"Oncorhynchus mykiss (Walbaum, 1792)",SCIENTIFIC,Oncorhynchus,mykiss,NA,NA,TRUE,FALSE,Oncorhynchus mykiss,Oncorhynchus mykiss,"Oncorhynchus mykiss (Walbaum, 1792)",sp.,Walbaum,1792
+"Leuciscus aspius (Linnaeus, 1758)",SCIENTIFIC,Leuciscus,aspius,NA,NA,TRUE,FALSE,Leuciscus aspius,Leuciscus aspius,"Leuciscus aspius (Linnaeus, 1758)",sp.,Linnaeus,1758
+"Acipenser gueldenstaedtii Brandt & Ratzeburg, 1831",SCIENTIFIC,Acipenser,gueldenstaedtii,Brandt & Ratzeburg,1831,TRUE,FALSE,Acipenser gueldenstaedtii,Acipenser gueldenstaedtii,"Acipenser gueldenstaedtii Brandt & Ratzeburg, 1831",sp.,NA,NA
+Huso huso,SCIENTIFIC,Huso,huso,NA,NA,TRUE,FALSE,Huso huso,Huso huso,Huso huso,sp.,NA,NA
+"Carassius gibelio (Bloch, 1782)",SCIENTIFIC,Carassius,gibelio,NA,NA,TRUE,FALSE,Carassius gibelio,Carassius gibelio,"Carassius gibelio (Bloch, 1782)",sp.,Bloch,1782
+"Ameiurus nebulosus (Lesueur, 1819)",SCIENTIFIC,Ameiurus,nebulosus,NA,NA,TRUE,FALSE,Ameiurus nebulosus,Ameiurus nebulosus,"Ameiurus nebulosus (Lesueur, 1819)",sp.,Lesueur,1819
+"Lepomis gibbosus (Linnaeus, 1758)",SCIENTIFIC,Lepomis,gibbosus,NA,NA,TRUE,FALSE,Lepomis gibbosus,Lepomis gibbosus,"Lepomis gibbosus (Linnaeus, 1758)",sp.,Linnaeus,1758
+"Ctenopharyngodon idella (Valenciennes, 1844)",SCIENTIFIC,Ctenopharyngodon,idella,NA,NA,TRUE,FALSE,Ctenopharyngodon idella,Ctenopharyngodon idella,"Ctenopharyngodon idella (Valenciennes, 1844)",sp.,Valenciennes,1844
+"Silurus glanis Linnaeus, 1758",SCIENTIFIC,Silurus,glanis,Linnaeus,1758,TRUE,FALSE,Silurus glanis,Silurus glanis,"Silurus glanis Linnaeus, 1758",sp.,NA,NA
+"Acipenser baerii Brandt, 1869",SCIENTIFIC,Acipenser,baerii,Brandt,1869,TRUE,FALSE,Acipenser baerii,Acipenser baerii,"Acipenser baerii Brandt, 1869",sp.,NA,NA
+Cyprinus carpio x Carassius auratus,HYBRID,NA,NA,NA,NA,FALSE,FALSE,NA,NA,NA,NA,NA,NA
+"Carassius auratus (Linnaeus, 1758)",SCIENTIFIC,Carassius,auratus,NA,NA,TRUE,FALSE,Carassius auratus,Carassius auratus,"Carassius auratus (Linnaeus, 1758)",sp.,Linnaeus,1758
+"Acipenser ruthenus Linnaeus, 1758",SCIENTIFIC,Acipenser,ruthenus,Linnaeus,1758,TRUE,FALSE,Acipenser ruthenus,Acipenser ruthenus,"Acipenser ruthenus Linnaeus, 1758",sp.,NA,NA
+"Salvelinus fontinalis (Mitchill, 1814)",SCIENTIFIC,Salvelinus,fontinalis,NA,NA,TRUE,FALSE,Salvelinus fontinalis,Salvelinus fontinalis,"Salvelinus fontinalis (Mitchill, 1814)",sp.,Mitchill,1814
+"Neogobius fluviatilis (Pallas, 1814)",SCIENTIFIC,Neogobius,fluviatilis,NA,NA,TRUE,FALSE,Neogobius fluviatilis,Neogobius fluviatilis,"Neogobius fluviatilis (Pallas, 1814)",sp.,Pallas,1814
