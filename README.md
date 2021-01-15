@@ -1,5 +1,5 @@
 # MijnVisMaat-occurrences
- data publication Vismaat
+ data publication Mijn Vismaat
 
 # Mijn Vismaat Occurrences collected in Belgium
 
