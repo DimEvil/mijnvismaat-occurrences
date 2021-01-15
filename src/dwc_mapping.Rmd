@@ -31,173 +31,43 @@ library(tidylog)        # To provide feedback on dplyr functions
 library(magrittr)       # To use %<>% pipes
 library(here)           # To find files
 library(janitor)        # To clean input data
-library(readxl)         # To read Excel files
-library(digest)         # To generate hashes
-library(rgbif)          # To use GBIF services
-library(sp)             # coordinate transformation
-library(leaflet)        # coordinate transformation
-library(widgetframe)    # coordinate transformation
-library(sf)             # coordinate transformation
 library(lubridate)      # date transformation
 ```
 
 # Read source data
 
-Create a data frame `input_data` from the source data:
-The source data was corrected in Excel
-Muskrat occurrences opened in openRefine
-Obsolete columns removed
-some columns renamed to DwC term
-File exported to csv
-
-
-
 ```{r}
-
-input_interim <- read_delim(file = here::here("data", "raw", "MVM_hengelvangsten_Vlaanderen.csv"), ";" , escape_double = FALSE , trim_ws = TRUE, guess_max = 5000  )
-##input_interim <- read_csv2(file = here::here("data", "RAW", "MVM_hengelvangsten_Vlaanderen.csv"))                        
-
+input_data <- read_delim(
+  file = here::here("data", "raw", "MVM_hengelvangsten_Vlaanderen.csv"),
+  ";",
+  escape_double = FALSE,
+  trim_ws = TRUE,
+  guess_max = 5000
+)
 ```
 
 Preview data:
 
 ```{r}
-input_interim %>% head(n = 5)
+input_data %>% head()
 ```
 
-# Process source data
+# Preprocessing
 
 ## Tidy data
 
 Clean data somewhat:
 
 ```{r}
-input_interim %<>% remove_empty("rows")
+input_data %<>%
+  remove_empty("rows") %>%    # Remove empty rows
+  clean_names()               # Have sensible (lowercase) column names
 ```
 
 
-```{r}
-input_interim %>% head(n = 5)
-```
-
-# georefernce source data
-
-## Lambert to Decimals
-
-### Keep original x,Y as verbatimcoordinates
-
-We want to keep the original verbatim Coordinates
-The original X,Y will be used for creating decimalLatitude and decimalLongitude
-
-```{r}
-input_interim %<>% mutate(decimalLongitude = `Lon (EPSG: 4326)`) %>%
-                   mutate(decimalLatitude = `Lat (EPSG: 4326)`)
-```
-### Create a spacial dataframe
-
-Create spatial dataframe and define the CRS (31370 is Belgian Lambert 72)(crs = 28992 is the Dutch system used here)
-We indicate the x,y columns as coordinates and define the coordinate system
-
-
-```{r}
-#input_interim = st_as_sf(input_interim, coords = c("Longitude","Latitude"), crs = 28992 , agr = "constant" )
-#input_interim %>% head(n = 5)
-```
-
-
-## TRansform the data in WGS84
-
-Now we transform the Lambert 72 in WGS84
-
-```{r}
-#input_interim <- st_transform(input_interim, crs = 4326)
-#input_interim %>% head(n = 5)
-
-```
-
-### Create a dataframe with column decimalLatitude & decimalLongitude
-
-In order to add the decimal coordinates into the original df we create an x_y dataframe
-
-```{r}
-#x_y <- st_coordinates(input_interim)
-#x_y %>% head(n = 5)
-
-#write.csv(x_y, "../data/interim/x_y.csv", append = FALSE, na = "",  row.names = FALSE, fileEncoding = "UTF-8")
-```
-# create extra dataframe to work with 
-
-```{r}
-#input_interim_df <- input_interim
-```
-
-
-# remove geometry from dataframe 'input_interim_df'
-
-we remove all geometry from the spacial dataframe, to create a normal df
-
-```{r}
-##input_interim_df <- st_geometry(NULL)
-
-#st_geometry(input_interim_df) <- NULL
-
-#input_interim_df %>% head(n = 5)
-
-```
-
-
-### bind columns X_y and input_interim_df
-
-join both df's to have the decimalLat & Lon
-
-```{r}
-
-#input_interim_df = bind_cols(input_interim_df,x_y, .id = NULL)
-
-#input_interim_df %>% head(n = 5)
-
-```
-
-### Integrate x-y coordinates in original dataframe
-
-We can safely substitute input_interim 
-
-
-```{r}
-#input_interim <- input_interim_df
-```
-
-
-
-# Occurrence core
-
-## Pre-processing
-
-Create a dataframe occurrence data only 
-
-```{r}
-occurrence <- input_interim
-```
-
-## remove obsolete columns
-
-```{r}
-
-head(occurrence, n =5)
-##occurrence %<>% select(-c(kind_nl,day, month, year))
-```
-
-
-
-# Term mapping
+# Darwin Core mapping
 
 Map the data to [Darwin Core Occurrence](http://rs.gbif.org/core/dwc_occurrence_2015-07-02.xml).
-
-Start with record-level terms which contain metadata about the dataset (which is generally the same for all records).
-
-# Event
-
-### datasetID
 
 ```{r}
 occurrence %<>% mutate(datasetID = "my_doi") # e.g. "to compplete"
@@ -208,7 +78,6 @@ occurrence %<>% mutate(datasetID = "my_doi") # e.g. "to compplete"
 ```{r}
 occurrence %<>% mutate(type = "Event")
 ```
-
 
 ### language
 
@@ -228,6 +97,7 @@ occurrence %<>% mutate(license = "http://creativecommons.org/publicdomain/zero/1
 ```{r}
 occurrence %<>% mutate(rightsHolder = "Royal Dutch Angling Association") # e.g. "INBO"
 ```
+
 ### accessRights
 
 ```{r}
@@ -252,20 +122,13 @@ occurrence %<>% mutate(institutionCode = "Royal Dutch Angling Association") # e.
 occurrence %<>% mutate(datasetName = "MijnVISmaat app, alien fish occurrences in Belgium") # e.g. "Checklist of non-native freshwater fishes in Flanders, Belgium"
 ```
 
-The following terms contain information about the taxon:
-
 ### basis of Record
 
 ```{r}
 occurrence %<>% mutate(basisOfRecord = "HumanObservation")
 ```
-### informationWithHeld
-
-### dataGeneralizations
 
 ### occurrenceID
-
-**This need to be fixed**
 
 ```{r}
 occurrence %<>% mutate(occurrenceID = ID) 
@@ -273,13 +136,11 @@ occurrence %<>% mutate(occurrenceID = ID)
   
 ```
 
-
 ### recordedBy
 
 ```{r}
 occurrence %<>% mutate(recordedBy = 'MijnVismaat')
 ```
-
 
 ### individualCount
 
@@ -287,128 +148,18 @@ occurrence %<>% mutate(recordedBy = 'MijnVismaat')
 occurrence %<>% mutate(individualCount = '1') 
 ```
 
-### oragnismQuantity
-
-### organismQuentityType
-
-### sex
 
 ```{r}
-#occurrence %<>% mutate(sex = recode(Gender,
-#"Muskusrat" = "Muskusrat",
-#                   "jong"  = "juvenile",
-#                   "oud" = "adult",
-#                   "Onbekend" = "",
-#                                   ))
 ```
 
-
-### lifeStage
-
-```{r}
-#occurrence %<>% mutate(lifeStage = recode(Age,
-#"Muskusrat" = "Muskusrat",
-#                   "moer"  = "female",
-#                   "ram" = "male",
-#                   "Onbekend" = "",
-#                                   ))
-```
-
-
-
-### behavior
-
-
-### occurrenceRemarks
-
-```{r}
-# occurrence %<>% rename(occurrenceRemarks = 'action_en')
-```
 ## samplingProtocol
 
 ```{r}
-occurrence %<>% mutate(samplingProtocol = 'fishing rod catch') 
- 
-
- # extract follow ups to new column
-# mutate(follow_up = str_extract(samplingProtocol, "Follow-up=[0-9]*")) %>%
- # remove follow ups from samplingProtocol
-# mutate(samplingProtocol = str_remove(samplingProtocol, "Follow-up=[0-9]*")) %>%
- # remove leading ", " if present
-# mutate(samplingProtocol = str_remove(samplingProtocol, "^,\\s")) %>%
- # remove trailing ", " if present
-# mutate(samplingProtocol = str_remove(samplingProtocol, ",\\s$"))%>%
- # rename follow up
-# rename(samplingEffort = "follow_up") 
- # replace follow-up with times visited
- # mutate(samplingEffort = str_replace(samplingEffort, "Follow-up=*", "times-visited="))
 ```
-### samplingEffort
-
-```{r}
-# occurrence %<>%
-# extract follow ups to new column
-# mutate(samplingEffort = str_replace(samplingEffort, "Follow-up=*", "times-visited=")) 
-
-
-```
-
 
 ### eventDate
 
-
 ```{r}
-# occurrence %<>% rename(eventDate = 'CreatedOn')
-
-
-
-```
-```{r}
-occurrence %<>% mutate(eventDate = dmy(`Datum (dd-mm-jjjj)`)) 
-```
-```{r}
-occurrence %<>% mutate(year = year(eventDate)) %<>%
-                mutate(month = month(eventDate)) %<>%
-                mutate(day = day(eventDate)) %<>%
-                mutate(eventDate = date(eventDate))
-                
-```
-
-
-
-# Location
-
-
-
-```{r}
-
-occurrence %<>% mutate(geodeticDatum = "WGS84") %>%
-                mutate(coordinateUncertaintyInMeters = "30") %>%
-                # mutate(verbatimCoordinateSystem = "Rijksdriehoekscoördinaten") %>%
-                mutate(countryCode = "BE")  %>%            
-                mutate(continent = "Europe")
-
-
-```
-
-
-```{r}
-
-head(occurrence, n = 5)
-occurrence %<>%
-  # mutate(verbatimLongitude = round(verbatimLongitude)) %>%
-  # mutate(verbatimLatitude = round(verbatimLatitude)) %>%
-   mutate(decimalLongitude = round(decimalLongitude, digits = 5)) %>%
-   mutate(decimalLatitude = round(decimalLatitude, digits = 5)) 
-   
-```
-
-
-```{r}
-occurrence %<>%   
-   mutate(decimalLatitude = as.character(format(decimalLatitude, nsmall = 5))) %>%
-   mutate(decimalLongitude = as.character(format(decimalLongitude, nsmall = 5)))
-
 ```
 
 ### continent
@@ -420,22 +171,6 @@ occurrence %<>%
 ### countryCode
 
 ```{r}
-#occurrence %<>% mutate(countryCode = "NL") # e.g. "Belgium = BE"
-```
-
-### municipality
-
-municipality already in source file
-
-```{r}
-#occurrence %<>%
-#  mutate(municipality = str_remove(municipality,"\\(BE\\)"))
-```
-
-###LocationID
-
-```{r}
-#occurrence %<>% mutate(locationID = SubAreaName)
 ```
 
 ### locality
@@ -445,29 +180,13 @@ occurrence %<>% mutate(verbatimLocality = Visstek)
 ```
 
 
-
-
-
-### verbatimcoordinates
-
 ```{r}
-#occurrence %<>% mutate(verbatimCoordinates = HourSquareName)
 ```
 
 
-
-### verbatimLatitude
-
-### verbatimLongitude
-
-### verbatimcoordinatesystem
-
-
 ```{r}
-#occurrence %<>% mutate(verbatimcoordinatesystem = "Amersfoort/RD new") # 
 ```
 
-### verbatimSRS
 
 ```{r}
 occurrence %<>% mutate(verbatimSRS = "EPSG:4326")
@@ -489,108 +208,34 @@ occurrence %<>% mutate(identifiedBy = 'MijnVISmaat, Royal Dutch Angling Associat
 ### scientificName 
 
 ```{r}
-head(occurrence, n=5)
-occurrence %<>% mutate(scientificName = acceptedName)
-
-# recode(CatchTypeName,
-#                   "Muskusrat" = "Ondatra zibethicus",
-#                   "Beverrat"  = "Myocastor coypus",
-#                   "Muskusrat ram oud (>1jr)" = "Ondatra zibethicus",
-#                   "Muskusrat ram jong (<1jr)" = "Ondatra zibethicus",
-#                   "Muskusrat moer oud (>1jr)" = "Ondatra zibethicus",
-#                   "Muskusrat moer jong (<1jr)" = "Ondatra zibethicus",
-#                                       ))
-            
-
-
-```
-### kingdom
-```{r}
 occurrence %<>% mutate(kingdom = "Animalia")
 ```
 
-Use the [GBIF nameparser](https://www.gbif.org/tools/name-parser) to retrieve nomenclatural information for the scientific names in the dataset:
 
 ```{r}
-parsed_names <- occurrence %>%
-  distinct(scientificName) %>%
-  pull() %>% # Create vector from dataframe
-  parsenames() # An rgbif function
 ```
 
-Preview data:
 
 ```{r}
-parsed_names %>% head(n = 62)
 ```
-
-Show scientific names with nomenclatural issues, i.e. not of `type = SCIENTIFIC` or that could not be fully parsed. Note: these are not necessarily incorrect.
-
-```{r}
-parsed_names %>%
-  select(scientificname, type, parsed, parsedpartially, rankmarker) %>%
-  filter(!(type == "SCIENTIFIC" & parsed == "TRUE" & parsedpartially == "FALSE"))
-```
-
-#verbatimScientificName
 
 
 ```{r}
 occurrence %<>% mutate(vernacularName = Vissoort)
 ```
-#taxonRank
-```{r}
-occurrence %<>% mutate(taxonRank = case_when(scientificName == "Cyprinus carpio x Carassius auratus" ~ "hybrid",
-                                             TRUE ~ "species"))
-
-
-#taxon %<>% mutate(nomenclaturalCode =case_when(kingdom == "Animalia" ~ "ICZN",kingdom == "Plantae" ~ "ICBN"  )) 
-
-
-
-```
-
 
 # nomenclaturalCode
 
 ```{r}
-occurrence %<>% mutate(nomenclaturalCode = "ICZN") # e.g. "ICZN"
-```
-
-
-### OccurrenceStatus present/absent
-
-```{r}
-occurrence %<>% 
-    ##select(individualCount) %>%
-    mutate(occurrenceStatus = case_when(individualCount > 0 ~ "present",
-                              individualCount == 0 ~ "absent"
-                                 )
-                                )
-
 ```
 
 ## remove rows with non invasive fish
 
 ```{r}
-
 occurrence %<>%
-        filter(scientificName != 'Leuciscus idus (Linnaeus, 1758)') %<>%
-        filter(scientificName != 'Silurus glanis Linnaeus, 1758')
-
-        
-  
-  
-  
- 
-
-
 ```
 
-
-
 ## Post-processing
-
 
 ```{r}
 colnames(occurrence) <- str_remove(colnames(occurrence), "dwc_")
@@ -615,12 +260,10 @@ col_order <- c( "ID","type","language","license","rightsHolder","accessRights","
 occurrence <- occurrence[, col_order]
 ```
 
-
 Preview data:
 
 ```{r}
 occurrence %>% head()
-
 ```
 
 Save to CSV:
@@ -631,24 +274,10 @@ write.csv(occurrence, "../data/processed/occurrence.csv", append = FALSE, na = "
 
 
 ```{r}
-#write_csv(occurrence, here("data", "processed", "occurrence.csv"), na = "")
-#write_csv(occurrence, here("data", "processed", "occurrence.csv"), append = FALSE, na = "")
-
-```
-
-
-# data quality tests
-
-```{r}
-
 parsed_names <- input_interim %>%
   distinct(acceptedName)  %>%
   pull() %>% # Create vector from dataframe
   parsenames() # An rgbif function
 
-head(parsed_names, n = 30)
-
 write.csv(parsed_names, "../data/interim/species.csv", append = FALSE, na = "",  row.names = FALSE, fileEncoding = "UTF-8")
-
 ```
-
