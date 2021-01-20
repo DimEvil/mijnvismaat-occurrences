@@ -17,7 +17,7 @@ output:
 #    toc_depth: 3
 ---
 
-# Setup 
+# Setup
 
 ```{r setup, include = FALSE}
 knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = TRUE)
@@ -31,7 +31,8 @@ library(tidylog)        # To provide feedback on dplyr functions
 library(magrittr)       # To use %<>% pipes
 library(here)           # To find files
 library(janitor)        # To clean input data
-library(lubridate)      # date transformation
+library(lubridate)      # Date transformation
+library(rgbif)          # Nomenclature functions
 ```
 
 # Read source data
@@ -63,7 +64,6 @@ input_data %<>%
   remove_empty("rows") %>%    # Remove empty rows
   clean_names()               # Have sensible (lowercase) column names
 ```
-
 
 # Darwin Core mapping
 
@@ -216,7 +216,7 @@ occurrence %<>% mutate(dwc_geodeticDatum = "WGS84")
 occurrence %<>% mutate(dwc_coordinateUncertaintyInMeters = "30")
 ```
 
-### scientificName 
+### scientificName
 
 ```{r}
 occurrence %<>% mutate(dwc_scientificName = accepted_name)
@@ -279,8 +279,8 @@ write_csv(occurrence, here::here("data", "processed", "occurrence.csv"), na = ""
 # Data quality tests
 
 ```{r}
-parsed_names <- input_interim %>%
-  distinct(acceptedName)  %>%
+parsed_names <- input_data %>%
+  distinct(accepted_name)  %>%
   pull() %>% # Create vector from dataframe
   parsenames() # An rgbif function
 
